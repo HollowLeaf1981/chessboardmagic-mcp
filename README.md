@@ -68,13 +68,13 @@ Restart Claude Desktop.
 
 Based on your 110 chess games, here's a summary:
 
-## Overall Performance
+### Overall Performance
 
 - Rating: Around 1960-2016 (fluctuating in the 1900-2000 range)
 - Total Games: 110 rapid games (10 min + 0 sec)
 - Win-Loss Record: Mixed results with wins, losses, and draws
 
-## Opening Preferences
+### Opening Preferences
 
 As White, you primarily play:
 
@@ -90,14 +90,14 @@ As Black, you face various openings and often choose:
 - King's Indian Defense structures against d4
 - Dutch Defense occasionally
 
-## Key Patterns
+### Key Patterns
 
 - You show a clear preference for flexible, positional openings rather than sharp tactical lines
 - Most games reach complex middlegames with 50-100+ moves
 - Many games end in endgames, suggesting you're comfortable in technical positions
 - Mix of results against opponents rated 1850-2140
 
-## Time Control
+### Time Control
 
 All games are Rapid (10 minutes with no increment), which suits your style of reaching long, strategic battles.
 
@@ -107,7 +107,7 @@ Would you like me to analyze specific aspects of your play, such as your perform
 
 Looking at your games, here's your performance breakdown by opening:
 
-## Your Best Openings as White
+### Your Best Openings as White
 
 English Opening - King's English Variation (c4 e5)
 
@@ -126,7 +126,7 @@ English Opening - Anglo-Indian Defense (c4 Nf6)
 Mixed results but decent win rate
 Good games against lower-rated opponents
 
-## Openings to Avoid as White
+### Openings to Avoid as White
 
 Queen's Pawn Stonewall formations - You lost multiple games with this setup:
 
@@ -137,7 +137,7 @@ Against the Sicilian - Limited sample, but struggled:
 
 - Lost to Ryzvelt playing e4 c5 (0-1, resigned move 32)
 
-## Your Best Openings as Black
+### Your Best Openings as Black
 
 Caro-Kann Defense - Your most reliable weapon
 
@@ -160,7 +160,7 @@ Good results:
 - vs JWuEcjDC (0-1, resigned move 25)
 - Drew vs beklya (½-½, 68 moves)
 
-## Openings to Avoid as Black
+### Openings to Avoid as Black
 
 Alekhine Defense - Poor results:
 
@@ -172,7 +172,7 @@ Against less common lines (Bird's Opening, Polish Opening)
 
 Mixed results, but you seem less prepared
 
-## Key Recommendation
+### Key Recommendation
 
 Stick with:
 
