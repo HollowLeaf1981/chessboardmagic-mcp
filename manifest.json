@@ -1,0 +1,259 @@
+{
+  "schema_version": "1.0",
+  "name": "ChessboardMagic",
+  "description": "Access your repertoires and games from the Chessboard Magic API",
+  "auth": {
+    "type": "bearer",
+    "token_name": "Personal Access Token (PAT)",
+    "instructions": "Generate a PAT from your Chessboard Magic profile under 'API Access'."
+  },
+  "tools": [
+    {
+      "name": "get_repertoires",
+      "description": "Fetch repertoires associated with the authenticated user",
+      "input_schema": {
+        "type": "object",
+        "properties": {}
+      },
+      "output_schema": {
+        "type": "object",
+        "properties": {
+          "success": { "type": "boolean" },
+          "count": { "type": "number" },
+          "repertoires": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "repertoire_id": {
+                  "type": "string",
+                  "description": "Unique ID of the repertoire"
+                },
+                "title": {
+                  "type": "string",
+                  "description": "Title of the repertoire"
+                },
+                "author": {
+                  "type": "string",
+                  "description": "User or system author"
+                },
+                "visibility": {
+                  "type": "string",
+                  "description": "public | private"
+                },
+                "board_orientation": {
+                  "type": "string",
+                  "description": "white | black"
+                },
+                "description": {
+                  "type": "string",
+                  "description": "User-provided description"
+                },
+                "created_at": {
+                  "type": "string",
+                  "description": "Creation timestamp (ISO datetime)"
+                }
+              },
+              "required": [
+                "repertoire_id",
+                "title",
+                "visibility",
+                "board_orientation",
+                "created_at"
+              ]
+            }
+          }
+        },
+        "required": ["success", "count", "repertoires"]
+      }
+    },
+    {
+      "name": "get_games",
+      "description": "Fetch chess games associated with the authenticated user",
+      "input_schema": {
+        "type": "object",
+        "properties": {}
+      },
+      "output_schema": {
+        "type": "object",
+        "properties": {
+          "success": { "type": "boolean" },
+          "count": { "type": "number" },
+          "games": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "game_id": {
+                  "type": "string",
+                  "description": "Unique ID of the game"
+                },
+                "user_id": {
+                  "type": "string",
+                  "description": "User ID who owns this game"
+                },
+                "white": {
+                  "type": "string",
+                  "description": "White player name"
+                },
+                "black": {
+                  "type": "string",
+                  "description": "Black player name"
+                },
+                "white_elo": {
+                  "type": "number",
+                  "description": "White player's ELO rating"
+                },
+                "black_elo": {
+                  "type": "number",
+                  "description": "Black player's ELO rating"
+                },
+                "event": {
+                  "type": "string",
+                  "description": "Event name"
+                },
+                "site": {
+                  "type": "string",
+                  "description": "Location or platform"
+                },
+                "date": {
+                  "type": "string",
+                  "description": "Game date"
+                },
+                "round": {
+                  "type": "string",
+                  "description": "Round number"
+                },
+                "eco": {
+                  "type": "string",
+                  "description": "ECO opening code"
+                },
+                "opening_name": {
+                  "type": "string",
+                  "description": "Name of the opening"
+                },
+                "result": {
+                  "type": "string",
+                  "description": "Game result (1-0, 0-1, 1/2-1/2)"
+                },
+                "termination": {
+                  "type": "string",
+                  "description": "How the game ended"
+                },
+                "type": {
+                  "type": "string",
+                  "description": "Game type which is Game or Analysis"
+                },
+                "source": {
+                  "type": "string",
+                  "description": "Source of the game, Lichess, Chess.com, PGN"
+                },
+                "starting_line": {
+                  "type": "string",
+                  "description": "Starting moves or variation as a PGN"
+                },
+                "time_control": {
+                  "type": "string",
+                  "description": "Time control settings details i.e. 10+0"
+                },
+                "time_control_label": {
+                  "type": "string",
+                  "description": "Time Control Label i.e. Classical, Rapid, Blitz"
+                },
+                "board_orientation": {
+                  "type": "string",
+                  "description": "white | black"
+                },
+                "number_of_moves": {
+                  "type": "number",
+                  "description": "Total number of moves in the game"
+                },
+                "fen": {
+                  "type": "string",
+                  "description": "FEN position string"
+                },
+                "created_at": {
+                  "type": "string",
+                  "description": "Creation timestamp (ISO datetime) for the game on the platform"
+                }
+              },
+              "required": ["game_id", "created_at"]
+            }
+          }
+        },
+        "required": ["success", "count", "games"]
+      }
+    },
+    {
+      "moves": {
+        "type": "array",
+        "description": "All moves in the game, enhanced with comment links and variations. Moves form a directed tree structure, where each move links to its parent and next move.",
+        "items": {
+          "type": "object",
+          "properties": {
+            "game_id": {
+              "type": "string",
+              "description": "Game this move belongs to"
+            },
+            "move_id": {
+              "type": "string",
+              "description": "Unique string ID for the move. All moves reference this ID in parent, next, and variation fields."
+            },
+            "parent": {
+              "type": ["string", "null"],
+              "description": "The move_id of the preceding move. The game's first move ALWAYS uses parent='root'. parent=null indicates missing or malformed data, never a valid root node."
+            },
+            "next": {
+              "type": ["string", "null"],
+              "description": "The move_id of the next mainline move. Null if this move ends the line or belongs to a side variation."
+            },
+            "san": {
+              "type": "string",
+              "description": "The SAN (Standard Algebraic Notation) for this move"
+            },
+            "fen": {
+              "type": "string",
+              "description": "FEN position after this move is played"
+            },
+            "eval": {
+              "type": ["number", "string", "null"],
+              "description": "Evaluation after this move. May be a centipawn number or a mate string such as 'M1'. Null if missing."
+            },
+            "annotations": {
+              "type": ["string", "null"],
+              "description": "Annotation glyphs for the move (e.g. !!, ?, !?, etc.)"
+            },
+            "comment": {
+              "type": ["string", "null"],
+              "description": "User-written comment attached to this move"
+            },
+            "annotation_observation": {
+              "type": ["string", "null"],
+              "description": "JSON-encoded list of high-level observations such as Novelty, Initiative, Attack."
+            },
+            "annotation_position": {
+              "type": ["string", "null"],
+              "description": "Position-level annotation such as 'White is Better', 'Black is Better', or 'Equal Position'."
+            },
+            "comment_links": {
+              "type": "array",
+              "description": "External URLs referenced in comments for this move",
+              "items": { "type": "string" }
+            },
+            "variations": {
+              "type": "array",
+              "description": "Array of move_ids representing alternative sibling moves at the same ply. Each variation shares the same parent move.",
+              "items": { "type": "string" }
+            }
+          },
+          "required": ["move_id", "san", "fen"]
+        }
+      }
+    }
+  ],
+  "client": {
+    "python": {
+      "entrypoint": "mcp_server.py"
+    }
+  }
+}
