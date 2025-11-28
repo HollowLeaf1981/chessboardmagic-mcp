@@ -40,12 +40,23 @@ async def list_tools():
                 },
                 "required": ["gameId"]
             }
+        ),
+        Tool(
+            name="get_repertoire_details",
+            description="Fetch a single repertoire's metadata, moves, variations and comment links",
+            inputSchema={
+                "type": "object",
+                "properties": {
+                    "repertoireId": {"type": "string"}
+                },
+                "required": ["repertoireId"]
+            }
         )
     ]
 
 @server.call_tool()
 async def call_tool(name: str, arguments: dict):
-    if name not in ["get_repertoires", "get_games", "get_game_details"]:
+    if name not in ["get_repertoires", "get_games", "get_game_details", "get_repertoire_details"]:
         return CallToolResult(
             content=[TextContent(type="text", text=f"Unknown tool: {name}")]
         )
@@ -64,6 +75,13 @@ async def call_tool(name: str, arguments: dict):
                 content=[TextContent(type="text", text="Missing required argument: gameId")]
             )
         url = f"{API_BASE}/mcp/games/{game_id}"
+    elif name == "get_repertoire_details":
+        repertoire_id = arguments.get("repertoireId")
+        if not repertoire_id:
+            return CallToolResult(
+                content=[TextContent(type="text", text="Missing required argument: repertoireId")]
+            )
+        url = f"{API_BASE}/mcp/repertoires/{repertoire_id}"
     else:
         endpoint = "repertoires" if name == "get_repertoires" else "games"
         url = f"{API_BASE}/mcp/{endpoint}"
